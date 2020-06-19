@@ -3,6 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
+
+const Dishes = require('./models/dishes');
+
+// db connection
+const url = 'mongodb://localhost:27017/conFusion';
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+    console.log(">>> Connected correctly to server... <<<");
+}, (err) => { console.log(err); });
 
 // routes
 var indexRouter = require('./routes/index');
